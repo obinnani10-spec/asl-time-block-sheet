@@ -1,9 +1,9 @@
 {
   "redirects": [
     {
-      "source": "/:path*",
+      "source": "/(.*)",
       "has": [{ "type": "host", "value": "asl-time-block-sheet.vercel.app" }],
-      "destination": "https://book.obinnani.com/:path*",
+      "destination": "https://book.obinnani.com/$1",
       "permanent": true
     }
   ]
