@@ -6,7 +6,7 @@ Static page. No build step. Open index.html to preview.
 1. Push this folder to a GitHub repo.
 2. At vercel.com choose Add New > Project, import the repo, leave every setting on its default, and click Deploy.
 3. Add a custom domain under Settings > Domains (for example book.yourdomain.com).
-4. Replace YOUR-SITE-URL in the og:image line of index.html with your live address so link previews show your photo.
+4. If the live address ever changes, update og:url, og:image and twitter:image in index.html so link previews keep showing your photo.
 
 ## GitHub Pages (not recommended)
 Pages can show the sheet but cannot run `api/book.js`, so automatic email delivery would not work. Use Vercel.
@@ -28,3 +28,11 @@ The available hours and days are defined in two places: `HOURS` in `index.html` 
 ## Mark a time as taken
 Add the block to the "booked" list in `availability.json` as "date|24 hour start" in Eastern time, for example "2026-10-29|19" for Oct 29 at 7 PM.
 Commit and push, and the block shows as striped (taken) on the live page within a minute.
+
+## HANDOFF
+- Live site: https://asl-time-block-sheet.vercel.app (code: https://github.com/obinnani10-spec/asl-time-block-sheet). Every push to `main` deploys automatically in about a minute.
+- Edit copy: all page text lives in `index.html`. Change the words between the tags, keep the tone warm and first person, and never use em dashes. On GitHub you can open the file, click the pencil, edit and commit. The headline's yellow word is the part inside `<em>`.
+- Mark blocks as taken: add "YYYY-MM-DD|H" entries (Eastern, 24 hour start) to the "booked" list in `availability.json`, then commit and push.
+- Redeploy: push to `main`. To redeploy without a code change (for example after changing an environment variable), open the project on Vercel, go to Deployments, open the latest one's menu and choose Redeploy.
+- Environment variables: Vercel project > Settings > Environment Variables, Production. `RESEND_API_KEY` (Resend key), `TO_EMAIL` (receiving inbox), `FROM_EMAIL` (sender on your verified Resend domain). Never put these values in the repo.
+- Hours and days: change `HOURS` in `index.html` and `HOURS_MIN`, `HOURS_MAX` and the Sunday rule in `api/book.js` together.
