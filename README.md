@@ -26,4 +26,5 @@ This function needs Vercel. GitHub Pages cannot run it.
 The available hours and days are defined in two places: `HOURS` in `index.html` and `HOURS_MIN`, `HOURS_MAX` and the Sunday rule in `api/book.js`. Change both together.
 
 ## Mark a time as taken
-Edit the BOOKED list near the top of the script in index.html, for example "2026-10-29|19" blocks Oct 29 at 7 PM.
+Add the block to the "booked" list in `availability.json` as "date|24 hour start" in Eastern time, for example "2026-10-29|19" for Oct 29 at 7 PM.
+Commit and push, and the block shows as striped (taken) on the live page within a minute.

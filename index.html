@@ -356,7 +356,7 @@ body { margin: 0; }
   var TZ = "America/New_York";
   var DAY = 86400000;
   var HOURS = [9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20]; // start hours, last block ends at 9 PM
-  var BOOKED = []; // taken blocks, formatted "YYYY-MM-DD|H" (24 hour start), for example "2026-10-29|19"
+  var BOOKED = []; // taken blocks, filled from availability.json, formatted "YYYY-MM-DD|H" (24 hour start)
   var STORE = "asl-time-block-sheet";
 
   function nyNow() {
@@ -582,6 +582,19 @@ body { margin: 0; }
 
   renderGrid();
   renderReply();
+
+  // Mark taken blocks from availability.json. If it fails to load, everything stays open.
+  fetch("availability.json", { cache: "no-cache" }).then(function (r) {
+    if (!r.ok) throw new Error("no availability");
+    return r.json();
+  }).then(function (data) {
+    BOOKED = ((data && data.booked) || []).map(function (k) {
+      var m = /^(\d{4}-\d{2}-\d{2})\|(\d{1,2})$/.exec(String(k).trim());
+      return m ? m[1] + "|" + parseInt(m[2], 10) : null;
+    }).filter(Boolean);
+    Object.keys(picks).forEach(function (k) { if (isBooked(k)) delete picks[k]; });
+    renderGrid(); renderReply(); persist();
+  }).catch(function () {});
 })();
 </script>
 </body>
