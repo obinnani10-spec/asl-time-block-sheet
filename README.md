@@ -30,7 +30,7 @@ Add the block to the "booked" list in `availability.json` as "date|24 hour start
 Commit and push, and the block shows as striped (taken) on the live page within a minute.
 
 ## HANDOFF
-- Live site: https://asl-time-block-sheet.vercel.app (code: https://github.com/obinnani10-spec/asl-time-block-sheet). Every push to `main` deploys automatically in about a minute.
+- Live site: https://book.obinnani.com (the old asl-time-block-sheet.vercel.app address redirects there; code: https://github.com/obinnani10-spec/asl-time-block-sheet). Every push to `main` deploys automatically in about a minute.
 - Edit copy: all page text lives in `index.html`. Change the words between the tags, keep the tone warm and first person, and never use em dashes. On GitHub you can open the file, click the pencil, edit and commit. The headline's yellow word is the part inside `<em>`.
 - Mark blocks as taken: add "YYYY-MM-DD|H" entries (Eastern, 24 hour start) to the "booked" list in `availability.json`, then commit and push.
 - Redeploy: push to `main`. To redeploy without a code change (for example after changing an environment variable), open the project on Vercel, go to Deployments, open the latest one's menu and choose Redeploy.
